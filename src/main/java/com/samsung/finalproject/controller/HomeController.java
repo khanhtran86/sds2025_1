@@ -2,12 +2,14 @@ package com.samsung.finalproject.controller;
 
 import com.samsung.finalproject.models.entities.Person;
 import com.samsung.finalproject.models.entities.ShoppingCart;
+import com.samsung.finalproject.models.viewmodels.User;
 import com.samsung.finalproject.services.PersonService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,5 +62,14 @@ public class HomeController {
         List<Person> lstPerson = (List<Person>)session.getAttribute("personList");
         return ResponseEntity.ok(lstPerson);
         //return ResponseEntity.ok(session.getId());
+    }
+
+    @GetMapping("/login")
+    public String login(Model model)
+    {
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "Login";
     }
 }

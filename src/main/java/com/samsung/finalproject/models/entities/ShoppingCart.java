@@ -16,15 +16,19 @@ public class ShoppingCart {
     private List<Person> lstItems = new ArrayList<>();
 
     public void AddItem(Person person) {
+        if(lstItems==null)
+            lstItems = new ArrayList<>();
         lstItems.add(person);
         this.Save();
     }
 
     public List<Person> GetItems() {
+        this.Get();
         return lstItems;
     }
 
     public Person getItem(int id) {
+        this.Get();
         return lstItems.stream().filter(person -> person.getId() == id).findFirst().orElse(null);
     }
 
