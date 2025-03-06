@@ -1,5 +1,7 @@
 package com.samsung.finalproject.common;
 
+import com.samsung.finalproject.services.CustomUserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+    @Autowired
+    CustomUserDetailService customUserDetailService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(customer->customer.disable())
@@ -38,11 +42,6 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.builder()
-                .username("asia@euroland.com")
-                .password(passwordEncoder.encode("abc123"))
-                .roles("Admin")
-                .build();
-        return new InMemoryUserDetailsManager(user);
+        return customUserDetailService;
     }
 }
