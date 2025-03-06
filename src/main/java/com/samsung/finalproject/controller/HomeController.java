@@ -1,26 +1,31 @@
 package com.samsung.finalproject.controller;
 
-import com.samsung.finalproject.common.AppSettings;
-import com.samsung.finalproject.models.repositories.PersonRepositoryFactory;
-import org.hibernate.query.NativeQuery;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.samsung.finalproject.models.entities.Person;
+import com.samsung.finalproject.services.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class HomeController {
-    @Autowired
-    AppSettings appSettings;
-
-    @Autowired
-    PersonRepositoryFactory personFactory;
+    PersonService personService;
+    public HomeController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @GetMapping("/")
     public ResponseEntity index(){
-        String dataSource = appSettings.dataSource;
-        String result = personFactory.getPersonRepository(dataSource).getData();
+        List<Person> result =personService.getPersonList();
+        return ResponseEntity.ok(result);
+    }
 
+    @GetMapping("/search")
+    public ResponseEntity search(@RequestParam(defaultValue = "") String name)
+    {
+        List<Person> result = personService.searchPerson(name);
         return ResponseEntity.ok(result);
     }
 }

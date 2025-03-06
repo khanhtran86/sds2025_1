@@ -1,5 +1,11 @@
 package com.samsung.finalproject.models.repositories;
 
+import com.samsung.finalproject.models.entities.Person;
+
+import java.util.List;
+
 public interface IPersonRepository {
-    String getData();
+    List<Person> getData();
+
+    List<Person> searchByName(String name);
 }
