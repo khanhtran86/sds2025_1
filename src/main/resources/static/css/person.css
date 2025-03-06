@@ -1,0 +1,40 @@
+body{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.list-person
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    margin: 20px auto;
+
+}
+
+.person
+{
+    width: 170px;
+    margin: 10px;
+}
+.person>div
+{
+    line-height: 30px;
+}
+
+.person>.name
+{
+    font-weight: bold;
+}
+
+.form-row
+{
+    line-height: 40px;
+}
+
+.form-row label
+{
+    width: 150px;
+}
