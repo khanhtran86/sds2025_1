@@ -20,9 +20,14 @@ public class JwtUtil {
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 24*1000*60*60)) //24h
+                .expiration(new Date(System.currentTimeMillis() + 1000*60)) //60s
                 .signWith(SignatureAlgorithm.HS384, secretKey)
                 .compact();
+    }
+
+    public boolean validateToken(String token, String username) {
+        return (username.equalsIgnoreCase(extractUsername(token))
+                && !extractExpiration(token).before(new Date()));
     }
 
     public String extractUsername(String token) {
@@ -30,6 +35,10 @@ public class JwtUtil {
         return claims.getSubject();
     }
 
+    public Date extractExpiration(String token) {
+        Claims claims = extractClaims(token);
+        return claims.getExpiration();
+    }
 
     public Claims extractClaims(String token) {
         SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
