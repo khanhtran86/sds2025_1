@@ -1,6 +1,7 @@
 package com.samsung.jwtauthen.controller;
 
 import com.samsung.jwtauthen.common.JwtUtil;
+import com.samsung.jwtauthen.model.entities.Users;
 import com.samsung.jwtauthen.model.viewmodels.AuthRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,10 @@ public class AuthController {
         );
 
         return ResponseEntity.ok(jwtUtil.generateToken(authRequest.getUsername()));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody Users authRequest){
+        return ResponseEntity.ok("done");
     }
 }
