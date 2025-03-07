@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
   <h1>Login Form</h1>
@@ -18,6 +19,11 @@
         <td>Password</td>
         <td>
           <input type="password" th:field="*{password}"/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="error">
+          <div th:text="${error}"></div>
         </td>
       </tr>
       <tr>

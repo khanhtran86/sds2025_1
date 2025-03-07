@@ -65,10 +65,11 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(Model model)
+    public String login(Model model, @RequestParam(defaultValue = "") String error)
     {
         Users user = new Users();
         model.addAttribute("user", user);
+        model.addAttribute("error", error);
 
         return "Login";
     }

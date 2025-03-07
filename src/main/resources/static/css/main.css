@@ -2,11 +2,15 @@ body
 {
     font-family: Arial, sans-serif;
     font-size: 14px;
-    color: red;
 }
 
 h1
 {
     color: blue;
     font-size: 18px;
+}
+
+.error
+{
+    color: red;
 }

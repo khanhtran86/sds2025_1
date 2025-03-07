@@ -2,6 +2,7 @@
   {
     "id": 1,
     "email": "george.bluth@reqres.in",
+    "password": "$2a$10$afs2drs5/w/uovxBfT.dTu6Y2Hu15h0OiW5c9C526xLsYMnmO/8hu",
     "first_name": "George",
     "last_name": "Bluth",
     "avatar": "https://reqres.in/img/faces/1-image.jpg"

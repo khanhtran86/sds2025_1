@@ -15,15 +15,22 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+    private final CustomAuthenticationFailureHandler failureHandler;
+    public SecurityConfig(CustomAuthenticationFailureHandler failureHandler) {
+        this.failureHandler = failureHandler;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(customer->customer.disable())
                 .cors(c->c.disable())
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/register", "/signin").permitAll()
+                .requestMatchers("/css/**").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .failureHandler(failureHandler)
                         .permitAll()
                 ).logout(logout -> logout
                         .logoutUrl("/logout")
