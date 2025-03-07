@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)

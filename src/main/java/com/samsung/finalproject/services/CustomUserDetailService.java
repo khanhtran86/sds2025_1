@@ -1,12 +1,14 @@
 package com.samsung.finalproject.services;
 
 import com.samsung.finalproject.models.repositories.UserRepository;
-import com.samsung.finalproject.models.viewmodels.User;
+import com.samsung.finalproject.models.viewmodels.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -18,7 +20,8 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        Users user = userRepository.findByUsername(username);
+
         if(user == null) {
             throw new UsernameNotFoundException(username);
         }

@@ -2,7 +2,7 @@ package com.samsung.finalproject.controller;
 
 import com.samsung.finalproject.models.entities.Person;
 import com.samsung.finalproject.models.entities.ShoppingCart;
-import com.samsung.finalproject.models.viewmodels.User;
+import com.samsung.finalproject.models.viewmodels.Users;
 import com.samsung.finalproject.services.PersonService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +67,7 @@ public class HomeController {
     @GetMapping("/login")
     public String login(Model model)
     {
-        User user = new User();
+        Users user = new Users();
         model.addAttribute("user", user);
 
         return "Login";

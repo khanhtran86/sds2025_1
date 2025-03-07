@@ -1,7 +1,7 @@
 package com.samsung.finalproject.services;
 
 import com.samsung.finalproject.models.repositories.UserRepository;
-import com.samsung.finalproject.models.viewmodels.User;
+import com.samsung.finalproject.models.viewmodels.Users;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class UserService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    public User findByUsername(String username) {
+    public Users findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 }
